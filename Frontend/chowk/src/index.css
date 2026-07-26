@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #b34b3f; /* terracotta */
+  --color-brand-primary-hover: #9c3f35;
+  --color-brand-dark: #121212; /* charcoal black */
+  --color-brand-bg: #f5f3ec; /* cream background */
+  --font-serif: "Playfair Display", Georgia, serif;
+}
+
+@layer base {
+  html, body {
+    @apply antialiased bg-[#f5f3ec] text-[#121212];
+  }
+}
+
+/* Glassmorphism utilities */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md shadow-sm;
+  }
+}

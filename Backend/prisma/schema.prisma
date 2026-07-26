@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String
+  role          Role     @default(ADMIN)
+  createdAt     DateTime @default(now())
+}
+
+enum Role {
+  ADMIN
+}
+
+model ParkingLocation {
+  id             String      @id @default(uuid())
+  name           String
+  address        String
+  district       String      @default("Kathmandu")
+  description    String?
+  type           ParkingType
+  totalSlots     Int
+  availableSlots Int         @default(0)
+  bikeRate       Float?
+  carRate        Float?
+  pricePerHour   Float?
+  vehicleType    VehicleType[]
+  openHours      String?
+  contactPhone   String?
+
+  lat            Float
+  lng            Float
+
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+enum ParkingType {
+  PAID
+  FREE
+  GOVERNMENT
+}
+
+enum VehicleType {
+  BIKE
+  CAR
+}
